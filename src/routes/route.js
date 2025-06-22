@@ -1,66 +1,84 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/test-me", function (req, res) {
-  res.send("My First Node JS Application");
+router.get("/movies", function (req, res) {
+  let movie = [
+    "Inception",
+    "Gravity",
+    "Parasite",
+    "Arrival",
+    "Interstellar",
+    "The Matrix",
+  ];
+  res.send(movie);
+});
+router.get("/movies/:indexNumber", function (req, res) {
+  let movie = [
+    "The Batman",
+    "Spiderman",
+    "Twilight",
+    "The Dark Knight",
+    "The Avengers",
+    "Superman",
+    "Deadpool",
+  ];
+  let movieLenth = movie.length - 1;
+
+  console.log(JSON.stringify(req.params));
+  let index = req.params.indexNumber;
+  if (index > movieLenth) {
+    res.send("Please give valid index");
+  } else {
+    res.send(
+      "The movie name of specific index " + index + " is: " + movie[index]
+    );
+  }
 });
 
-router.get("/students", function (req, res) {
-  let students = ["Pratiksha", "Priyanka", "Bipasha", "Atrika"];
-  console.log(req.params);
-
-  res.send(students);
+router.get("/films", function (req, res) {
+  let film = [
+    { id: 1, name: "Passengers" },
+    { id: 2, name: "Divergent" },
+    { id: 3, name: "Life" },
+    { id: 4, name: "Predator" },
+  ];
+  res.send(film);
 });
 
-// Path Parameter
-router.get("/student/:name", function (req, res) {
-  console.log("The Path Parameter in the req are: ");
-  let myParams = req.params;
-  console.log(JSON.stringify(myParams));
-  let myName = myParams.name;
-  console.log(myName);
-
-  res.send("Full name is: " + myName);
+router.get("/films/:filmID", function (req, res) {
+  let films = [
+    { id: 1, name: "Passengers" },
+    { id: 2, name: "Divergent" },
+    { id: 3, name: "Life" },
+    { id: 4, name: "Predator" },
+  ];
+  let filmsLength = films.length;
+  let filmId = req.params.filmID;
+  if (filmId > filmsLength || filmId <= 0) {
+    res.send("No Movie Exists With This Id");
+  } else {
+    res.send(films[filmId - 1].name);
+  }
 });
-
-router.get("/students/:name/:title", function (req, res) {
-  let fullName = JSON.stringify(req.params);
-  console.log("The Path Parameter in the req are: ", fullName);
-  let x = JSON.parse(fullName);
-  console.log(x);
-
-  res.send("Full name is: " + x.name + " " + x.title);
+router.get("/film1/:filmID", function (req, res) {
+  let films = [
+    { id: 1, name: "Passengers" },
+    { id: 2, name: "Divergent" },
+    { id: 3, name: "Life" },
+    { id: 4, name: "Predator" },
+  ];
+  let filmsLength = films.length;
+  let filmId = req.params.filmID;
+  if (filmId > filmsLength || filmId == 0) {
+    res.send("No Movie Exists With This Id");
+  } else {
+    for (film of films) {
+      console.log(film);
+      if (filmId == film.id) {
+        res.send("The movie name of corresponding id is: " + film.name);
+      }
+    }
+  }
 });
-
-// Query Params
-
-router.get("/employee", function (req, res) {
-  console.log("Demo of Query params: ");
-  console.log(JSON.stringify(req.query));
-  let customerName = req.query.name;
-  let profile = req.query.profile;
-
-  res.send(customerName + " " + profile);
-});
-
-router.get("/fruits", function (req, res) {
-  console.log("Query params in this request are: ", JSON.stringify(req.query));
-  let arr = ["Mango", "Melon", "Apple"];
-  let i = req.query.index;
-  console.log("The element of specific index is: " , arr[i]);
-  
-  res.send(arr[i]);
-});
-
-router.get('/candidates', function(req,res){
-  console.log(JSON.stringify(req.query));
-  let gender = req.query.gender;
-  let state = req.query.state;
-  let district = req.query.district;
-  console.log("State: ", state, ", District: ", district, ", Gender: " , gender);
-  
-  
-  res.send("Done : " +  state + " ,  " +  district + "  , " + gender)
-})
 
 module.exports = router;
