@@ -10,6 +10,7 @@ router.get("/movies", function (req, res) {
     "Interstellar",
     "The Matrix",
   ];
+
   res.send(movie);
 });
 router.get("/movies/:indexNumber", function (req, res) {
@@ -26,7 +27,7 @@ router.get("/movies/:indexNumber", function (req, res) {
 
   console.log(JSON.stringify(req.params));
   let index = req.params.indexNumber;
-  if (index > movieLenth) {
+  if (index > movieLenth || index < 0) {
     res.send("Please give valid index");
   } else {
     res.send(
@@ -57,7 +58,7 @@ router.get("/films/:filmID", function (req, res) {
   if (filmId > filmsLength || filmId <= 0) {
     res.send("No Movie Exists With This Id");
   } else {
-    res.send(films[filmId - 1].name);
+    res.send("The film name of specific id is: " + films[filmId - 1].name);
   }
 });
 router.get("/film1/:filmID", function (req, res) {
