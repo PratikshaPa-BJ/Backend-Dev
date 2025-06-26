@@ -60,7 +60,19 @@ router.get('/candidates', function(req,res){
   console.log("State: ", state, ", District: ", district, ", Gender: " , gender);
   
   
-  res.send("Done : " +  state + " ,  " +  district + "  , " + gender)
+  res.send("State: " +  state + " , district: " +  district + "  , Gender: " + gender)
+})
+
+router.get('/bags', function(req,res){
+  let queryParams = req.query;
+  let category = queryParams.category;
+  let brand = queryParams.brand;
+  let colour = queryParams.colour;
+  console.log("The Brand selected is: " + brand);
+  console.log("The colour selected is: " + colour);
+  console.log("The Category selected is: " + category);
+  
+  res.send("Done");
 })
 
 module.exports = router;
