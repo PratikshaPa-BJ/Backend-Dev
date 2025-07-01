@@ -81,5 +81,36 @@ router.get("/film1/:filmID", function (req, res) {
     }
   }
 });
+router.get("/test-me", function (req, res) {
+  const arr = [1, 2, 3, 4, 6, 7, 8, 9];
+  let missingNum;
+  let n = arr[arr.length - 1];
+  const actualSum = (n * (n + 1)) / 2;
+  let sum = 0;
+  for (i of arr) {
+    sum += i;
+  }
+  missingNum = actualSum - sum;
+  console.log("Missing number in array is: " + missingNum);
+  res.send("Missing number in array is : " + missingNum);
+});
+
+router.get("/test-me1", function (req, res) {
+  let arr = [33, 34, 35, 37, 38, 39];
+  let n = arr.length + 1;
+  let first = arr[0];
+  let last = arr[arr.length - 1];
+  let actualSum = (n * (first + last)) / 2;
+  let sum = 0;
+  let missingNumber = 0;
+  for (let number of arr) {
+    sum += number;
+  }
+  missingNumber = actualSum - sum;
+  console.log("Missing number in array is: " + missingNumber);
+  res.send("Missing Number in array is: " + missingNumber);
+});
+
+
 
 module.exports = router;

@@ -7,3 +7,6 @@
 4.  Write another api called GET /films. Instead of an array of strings define an array of movie objects this time. Each movie object should have values - id, name..Return the entire array in this api’s response..
 
 5.	Write api GET /films/:filmId where filmId is the value received in request path params. Use this value to return a movie object with this id. In case there is no such movie present in the array, return a suitable message in the response body...
+6. Find the missing number in an array if array contains first 'n' natural number..
+7. Find the missing number in an array if array contains random number..
+
