@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-
 router.get("/test-me2", function (req, res) {
   res.send({ a: 15, b: 56 });
 });
@@ -16,6 +15,7 @@ router.post("/create-movies", function (req, res) {
   res.send(body);
 });
 
+// Write a post api which is taking input from url and add it in an array
 router.post("/test-me3", function (req, res) {
   let arr = ["Pratiksha", 10];
   let input = req.body.element;
@@ -25,6 +25,8 @@ router.post("/test-me3", function (req, res) {
 
   res.send({ msg: arr, status: true });
 });
+
+// Write a post api that creates a new player i.e that saves a player details and will not allow duplicate player name
 
 let players = [
   {
@@ -50,36 +52,34 @@ let players = [
   },
 ];
 router.post("/players", function (req, res) {
-  
   let dataFromReq = req.body;
   let nameFromReq = dataFromReq.name;
   let isDuplicate = false;
-  for ( obj of players){
-    if(obj.name === nameFromReq){
-      isDuplicate= true;
+  for (obj of players) {
+    if (obj.name === nameFromReq) {
+      isDuplicate = true;
       break;
-    }else{
-       isDuplicate = false;
-
+    } else {
+      isDuplicate = false;
     }
   }
-  if(isDuplicate){
-    res.send({ msg:"player already exist!", status:false })
-  }else{
-    players.push(dataFromReq)
-    res.send( {data:players, status: true})
+  if (isDuplicate) {
+    res.send({ msg: "player already exist!", status: false });
+  } else {
+    players.push(dataFromReq);
+    res.send({ data: players, status: true });
   }
 });
 
-router.post('/players1', function(req,res){
+router.post("/players1", function (req, res) {
   let body = req.body;
   let nameFromReq = body.name;
   let player = players.find((elem) => elem.name === nameFromReq);
-  if(player){
-    res.send({msg: "Player Already Exist!"})
-  }else{
+  if (player) {
+    res.send({ msg: "Player Already Exist!" });
+  } else {
     players.push(body);
-    res.send({data:players, status:true})
+    res.send({ data: players, status: true });
   }
-})
+});
 module.exports = router;
