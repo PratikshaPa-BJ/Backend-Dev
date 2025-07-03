@@ -79,7 +79,7 @@ router.get("/bags", function (req, res) {
 router.get("/test-me1", function (req, res) {
   let marks = req.query.marks;
   let result = marks > 40 ? "Pass" : "Fail";
-  let status = result == "Pass" ? true : false;
+  let status = (result == "Pass") ? true : false;
 
   res.send({ data: result, status: status });
 });
