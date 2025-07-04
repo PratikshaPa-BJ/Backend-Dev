@@ -4,6 +4,7 @@ const externalModule = require("../logger/logger");
 const helper = require("../util/helper");
 const validator = require("../validator/formatter");
 const loadash = require("../LodashEx/loadArr");
+const underscore = require("../underscoreEx/underscore");
 
 
 
@@ -36,5 +37,11 @@ router.get('/test-me3', function(req,res){
     loadash.fromPairsMethod()
 
     res.send("My Fourth API ")
+})
+
+router.get('/test-me4', function(req,res){
+  underscore.getFirstElem();
+  underscore.flattenArray();
+  res.send("My Fifth API")
 })
  module.exports = router;
