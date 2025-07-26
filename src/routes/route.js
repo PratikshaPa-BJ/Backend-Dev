@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const bookController = require("../controllers/bookController");
-const moment = require("moment");
 
 router.post("/createAuthor", bookController.createAuthor );
 router.post("/createbook", bookController.createBook );

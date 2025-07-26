@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const authorSchema = new mongoose.Schema(
   {
     author_id: {
-      type: String,
-      unique: true,
+      type: Number,
       required: true,
     },
     author_name: String,
@@ -13,4 +12,4 @@ const authorSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-module.exports = mongoose.model("author", authorSchema);
+module.exports = mongoose.model("author2", authorSchema);
