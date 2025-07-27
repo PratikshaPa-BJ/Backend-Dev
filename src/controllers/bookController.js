@@ -49,12 +49,16 @@ const getBookBasedonPrice = async function (req, res) {
   let obj = {};
   let books = await bookModel
     .find({ price: { $gte: 500, $lte: 1000 } })
-    .populate("author_id");
+    .populate("author_id")
+    .select({ bookName: 1, author_id: 1, _id: 0 });
+  console.log(books);
+
   books.forEach((x) => {
     // Object.assign(obj, {
     //   book_name: x.bookName,
     //   author: x.author_id.author_name,
     // });
+
     arr.push(x.bookName + " :  " + x.author_id.author_name);
   });
   res.send({ bookListWithAuthor: arr });
