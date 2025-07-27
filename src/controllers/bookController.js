@@ -22,46 +22,43 @@ const getSpecificAuthorBooks = async function (req, res) {
   let data = await authorModel
     .find({ author_name: "Chetan Bhagat" })
     .select({ _id: 0, author_id: 1 });
+  // console.log(data);
+
   let authorId = data[0].author_id;
-  //  console.log(data[0].author_id);
   let data1 = await bookModel
     .find({ author_id: authorId })
     .select({ bookName: 1, _id: 0 });
-  // console.log(data1);
   let data2 = data1.map((x) => x.bookName);
+
   res.send({ allBook: data2 });
 };
 
 const updateBook = async function (req, res) {
-  let author = await bookModel
+  let book = await bookModel
     .findOneAndUpdate(
       { bookName: "Two States" },
       { $set: { price: 100 } },
       { new: true }
     )
     .select({ author_id: 1, _id: 0, price: 1 });
-  // console.log(authorId);
 
   let authorName = await authorModel
-    .find({ author_id: author.author_id })
+    .find({ author_id: book.author_id })
     .select({ author_name: 1, _id: 0 });
-  // console.log(authorName);
 
-  res.send({ data: authorName, updatedPrice: author.price });
+  res.send({ data: authorName, updatedPrice: book.price });
 };
 
 const getBookBasedonPrice = async function (req, res) {
   let book = await bookModel
     .find({ price: { $gte: 500, $lte: 1000 } })
     .select({ author_id: 1, _id: 0, bookName: 1 });
-  // console.log(book);
+  console.log(book);
   // let bookList = book.map((x) => x.bookName);
 
   let allId = book.map((x) => x.author_id);
-  // console.log(allId);
+  console.log(allId);
   let author = await authorModel.find({ author_id: { $in: allId } });
-  // console.log(author);
-
   // let authorList = author.map((x) => x.author_name);
 
   book.forEach((x) => {
