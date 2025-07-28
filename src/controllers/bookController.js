@@ -46,7 +46,7 @@ const updateBook = async function (req, res) {
 
 const getBookBasedonPrice = async function (req, res) {
   let arr = [];
-  let obj = {};
+  // let obj = {};
   let books = await bookModel
     .find({ price: { $gte: 500, $lte: 1000 } })
     .populate("author_id")
