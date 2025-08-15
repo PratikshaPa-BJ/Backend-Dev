@@ -13,8 +13,9 @@ const createOrder = async function (req, res) {
   if (!mongoose.isValidObjectId(productId)) {
     return res.send("Product id is not valid object id..");
   }
+  let productExist = await productModel.findOne({ _id: productId });
 
-  if (!(await productModel.findOne({ _id: productId }))) {
+  if (!productExist) {
     return res.send("This product does not exist..");
   }
   //   if (
@@ -29,18 +30,10 @@ const createOrder = async function (req, res) {
   if (!mongoose.isValidObjectId(userId)) {
     return res.send("User id is not valid object id..");
   }
-
-  if (!(await userModel.findOne({ _id: userId }))) {
+  let userExist = await userModel.findOne({ _id: userId });
+  if (!userExist) {
     return res.send("This User does not exist..");
   }
-
-  // let freeAppUsers = req.headers["isfreeappuser"];
-  // let freeUser;
-  // if (freeAppUsers == "true") {
-  //   freeUser = true;
-  // } else {
-  //   freeUser = false;
-  // }
 
   // freeAppUser attribute is set in MW
   let freeUser = req.freeAppUser;
@@ -53,19 +46,15 @@ const createOrder = async function (req, res) {
     return res.send({ msg: order });
   } else {
     body.isFreeAppUser = false;
-    let currentUserId = userId;
-    let userSpecificData = await userModel.findOne({ _id: currentUserId });
-    let userBalance = userSpecificData.balance;
-    let currentProductId = productId;
-    let specificProduct = await productModel.findOne({ _id: currentProductId });
-    let productPrice = specificProduct.price;
+    let userBalance = userExist.balance;
+    let productPrice = productExist.price;
 
     if (userBalance >= productPrice) {
       req.body.amount = productPrice;
       let balanceAfterDeduction = userBalance - productPrice;
       let updatedUserBalance = await userModel.findOneAndUpdate(
         { _id: userId },
-        { balance: balanceAfterDeduction },
+        { $set: { balance: balanceAfterDeduction } },
         { new: true }
       );
       const createOrder = await orderModel.create(body);

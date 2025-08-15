@@ -10,7 +10,10 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 100,
     },
-    address: String,
+    address: {
+      type: String,
+      required: true,
+    },
     age: Number,
     gender: {
       type: String,

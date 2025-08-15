@@ -1,12 +1,11 @@
 const productModel = require("../models/productModel");
 
 const createProduct = async function (req, res) {
-  let body = req.body;
-  let productPrice = body.price;
-  if (!productPrice) {
-    return res.send("Please provide Product Price");
+  let { name, category, price } = req.body;
+  if (!name || !category || !price) {
+    return res.send("Please provide product name, category and price..");
   }
-  let products = await productModel.create(body);
+  let products = await productModel.create(req.body);
   res.send({ data: products });
 };
 
