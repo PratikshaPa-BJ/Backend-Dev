@@ -47,7 +47,7 @@ const getProfileDetails = async function (req, res) {
 
 const updateUser = async function (req, res) {
   let userIdInReq = req.params.userId;
-  if (!mongoose.isValidObjectId(userID)) {
+  if (!mongoose.isValidObjectId(userIdInReq)) {
     return res.send({ status: false, msg: "Please provide valid user id.." });
   }
   let userDetails = await userModel.findById(userIdInReq);
@@ -65,7 +65,7 @@ const updateUser = async function (req, res) {
 
 const deleteUser = async function (req, res) {
   let userIdReq = req.params.userId;
-  if (!mongoose.isValidObjectId(userID)) {
+  if (!mongoose.isValidObjectId(userIdReq)) {
     return res.send({ status: false, msg: "Please provide valid user id.." });
   }
   let user = await userModel.findById(userIdReq);
