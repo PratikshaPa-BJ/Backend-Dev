@@ -84,8 +84,8 @@ const getUsersData = async function (req, res) {
     };
     let result = await axios(dataFromAPI);
     res.status(200).send({ msg: result.data });
-  } catch (error) {
-    res.status(500).send({ msg: error.message });
+  } catch (err) {
+    res.status(500).send({ msg: err.message });
   }
 };
 
