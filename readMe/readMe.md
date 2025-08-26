@@ -1,57 +1,17 @@
-## TOPIC: Authorisation
+# Promise has typically 3 states
 
-## Authorisation with JWT
+- Pending : not awaited and hence has not completed yet ( e.g. typically when you dont await an axios or db call)
+- Rejected: When promise failed ( wrong url | server down etc)
+- Fulfilled: Promise completed succesfully (e.g. db call has completed and returned a result succesfully)
+  // - settled : referes to a combination of either rejected or fulfilled
 
-1.Token comparision with the userId requested
+# What is a promise:
 
----
-
-Note: Remember that authentication means validating the identity of a user. Both token generation and verification together implement authentication. Think of this like getting an ID card the first day of your college and then showing that to a guard seated outside your college's campus gate in future. By showing them this token you are confirming your identity to them. Only a legitimate(valid) student who has taken the admission can own an official ID card.
-
----
-
-Your user document should look like this :-
-
-{
-"\_id" : ObjectId("6226e3d2b98f22b349ca58be"),
-"firstName" : "Sabiha",
-"lastName" : "Khan",
-"mobile" : "9898909087",
-"emailId" : "sk@gmail.com",
-"password" : "password123",
-"gender" : "female",
-"isDeleted": false, //default value is false
-"age" : 12,
-"createdAt" : ISODate("2022-03-08T05:04:18.737Z"),
-"updatedAt" : ISODate("2022-03-08T05:04:18.737Z"),
-"\_\_v" : 0
-}
+- layman's definition: It is something in JS that tells us whether an operation has completed or not (pending)
+- technical definition: it is a JS object that represents whether an asynchronous operation(like db or axios call) is completed or not
 
 ---
 
-1. Write a POST api /users to register a user from the user details in request body.
-2. Write a \*POST api /login to login a user that takes user details - email and password from the request body. If the credentials don't match with any user's data return a suitable error. On successful login, generate a JWT token and return it in response body. Example:
+// An assignment :
 
-{
-status: true,
-data: {
-token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-
-    }
-
-}
-
----
-
-3. Write a GET api /users/:userId to fetch user details. Pass the userId as path param in the url. Check that request must contain x-auth-token header. If absent, return a suitable error. If present, check that the token is valid.
-4. Write a PUT api /users/:userId to update user details. Pass the userId as path param in the url and update the attributes received in the request body. Check that request must contain x-auth-token header. If absent, return a suitable error.
-5. Write a DELETE api /users/:userId that takes the userId in the path params and marks the isDeleted attribute for a user as true. Check that request must contain x-auth-token header. If absent, return a suitable error.
-6. Once, all the apis are working fine, move the authentication related code in a middleware called auth.js..
-7. Add this middleware at route level in the routes where applicable.
-
----
-
-- Please note that you have to also write the logic for authorisation now so that a logged in user can modify or fetch ONLY their own data.
-- You have to implement authorisation for fetch user details, update user and delete user apis
-- Run this code and ensure the authorisation works fine for all the apis before following the next requirement
-- You now have to move this similar code in all the three apis in a suitable middleware
+1.  WRITE A GET API TO GET THE LIST OF ALL THE "vaccination sessions by district id" for any given district id and for any given date

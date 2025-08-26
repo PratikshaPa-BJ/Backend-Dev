@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const userController = require("../controllers/userController");
-const commonMW = require("../middleware/auth");
+const coWinController = require("../controllers/cowinController");
 
-router.post("/users", userController.registerUser);
-router.post('/login', userController.userLogin);
-router.get('/users/:userId', commonMW.tokenValidation, commonMW.authorization, userController.getUserProfileData);
-router.put('/users/:userId', commonMW.tokenValidation, commonMW.authorization, userController.updateUserData);
-router.post('/users/:userId/posts', commonMW.tokenValidation,commonMW.authorization, userController.postMessage)
-router.delete('/users/:userId', commonMW.tokenValidation, commonMW.authorization, userController.deleteUserData);
+router.get("/cowin/states", coWinController.getStates);
+router.get("/cowin/districtsInState/:stateId", coWinController.getDistricts);
+router.get("/cowin/getByPin", coWinController.getByPin);
+router.get("/cowin/getByDistrict", coWinController.getByDistricts)
+router.post("/cowin/getOTP", coWinController.getOtp);
+
+router.get("/getUsers", coWinController.getUserDataFromExternalAPI)
+
 
 
 module.exports = router;
