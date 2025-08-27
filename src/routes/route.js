@@ -1,14 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const coWinController = require("../controllers/cowinController");
+const weatherController = require("../controllers/weatherController");
 
-router.get("/cowin/states", coWinController.getStates);
-router.get("/cowin/districtsInState/:stateId", coWinController.getDistricts);
-router.get("/cowin/getByPin", coWinController.getByPin);
-router.get("/cowin/getByDistrict", coWinController.getByDistricts)
-router.post("/cowin/getOTP", coWinController.getOtp);
-
-router.get("/getUsers", coWinController.getUserDataFromExternalAPI)
+router.get("/weatheroflondon", weatherController.getWeatherOfLondon);
+router.get('/allcityweather', weatherController.weatherOfAllCity);
+router.get('/weatherofallcity', weatherController.weatherDetails)
 
 
 
