@@ -12,7 +12,7 @@
 
 ---
 
-// An asignment :
+// An assignment :
 
 1.  GOTO http://api.openweathermap.org => “subscribe” current weather data ==> get api key for Free version ==> create new account and Verify your emailId( Must verify to avoid issues) => go to My APi keys under your account name(top right corner) or https://home.openweathermap.org/api_keys => save the key/appid somewhere. Now proceed further...
 

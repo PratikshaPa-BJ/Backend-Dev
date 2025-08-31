@@ -101,7 +101,16 @@ const weatherOfAllCities = async function (req, res) {
     let weatherDetails6 = { city: specificCity6, temp: specificTemp6 };
     WeatherData.push(weatherDetails6);
     // console.log(WeatherData);
-    let WeatherDataAfterSorting = WeatherData.sort((a, b) => a.temp - b.temp);
+    function compare(a, b) {
+      if (a.temp > b.temp) {
+        return 1;
+      }
+      if (a.temp < b.temp) {
+        return -1;
+      }
+      return 0;
+    }
+    let WeatherDataAfterSorting = WeatherData.sort(compare);
 
     res.status(200).send({ msg: WeatherDataAfterSorting });
   } catch (err) {
@@ -115,7 +124,7 @@ const weatherDetails = async function (req, res) {
     let city = req.query.q;
     let apiKey = req.query.appid;
     let cityArr = city.split(" ");
-    console.log(cityArr);
+    // console.log(cityArr);
     let arrLen = cityArr.length;
     for (let i = 0; i < arrLen; i++) {
       let dataFromAPI = {
