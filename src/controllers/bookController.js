@@ -88,7 +88,6 @@ const updateBookPriceWithoutPopulate = async function (req, res) {
     .select({ _id: 1 });
 
   let arrOfAuthorId = specificAuthorId.map((author) => author._id);
-
   let result = await bookModel.updateMany(
     { author: { $in: arrOfAuthorId } },
     { $inc: { price: 10 } }
