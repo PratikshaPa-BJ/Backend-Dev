@@ -5,7 +5,7 @@ const getFirstElem = function(){
       console.log("The first element in an this array is: " + firstElement);
       
 }
-
+// flatten() is an inbuilt function in the underscore js library that is used to flatten an array that is nested to some level..
 const flattenArray = function(){
     let arr = [ 1,[2], [3, [[4]]] ];
     let afterFlatten = underscore.flatten(arr);

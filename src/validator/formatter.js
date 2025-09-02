@@ -1,6 +1,5 @@
 const trim = function () {
   const title = "    Parihari       ";
-
   console.log("Before Trimming: " + title);
   const afterTrimming = title.trim();
   console.log("After Trimming:" + afterTrimming);
