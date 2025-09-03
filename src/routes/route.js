@@ -15,7 +15,7 @@ router.get("/dateManipulations", function (req, res) {
   let validOrNot = moment("15-03-1992", "MM-DD-YYYY").isValid();
   console.log(validOrNot);
 
-  let month = moment("February", "MMMM").isValid();
+  let month = moment("Mebruary", "MMMM").isValid();
   console.log(month);
   let validOrNot1 = moment("15-03-2016", []).isValid();
   console.log(validOrNot1);

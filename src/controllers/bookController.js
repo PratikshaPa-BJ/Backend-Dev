@@ -6,7 +6,7 @@ const createbook = async function (req, res) {
   res.send({ data: savedData });
 };
 const getBooks = async function (req, res) {
-  let allBooks = await bookModel.find({ authorName: "Chetan Bhagatt" });
+  let allBooks = await bookModel.find({ authorName: "Chetan Bhagat" });
   if (allBooks.length > 0) {
     res.send({ data: allBooks });
   } else {
