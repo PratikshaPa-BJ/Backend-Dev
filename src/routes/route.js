@@ -4,13 +4,7 @@ const userController = require("../controllers/userController");
 const commonMW = require("../middleware/commonMiddleware");
 
 router.post("/createUser", commonMW.mid2, userController.createUsers);
-router.get(
-  "/basicRoute",
-  commonMW.mid1,
-  commonMW.mid2,
-  commonMW.mid3,
-  userController.basicCode
-);
+router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, userController.basicCode);
 
 router.get("/test-me", userController.basicRoute, commonMW.mid3, commonMW.globalMid, function (req, res) {
   res.send("Ending req res cycle");

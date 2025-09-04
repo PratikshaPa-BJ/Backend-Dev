@@ -1,4 +1,4 @@
-const globalMW = function (req, res, next) {
+const globalMW = function (req, res, next) {  
   let IP = req.ip;
   console.log("IP address is", IP);
   let url = req.originalUrl;
@@ -8,7 +8,7 @@ const globalMW = function (req, res, next) {
   console.log(typeof Date.now());
   console.log(new Date(Date.now()));
   console.log(date);
-
+  
   console.log(
     date.getFullYear() +
       "-" +
@@ -47,7 +47,7 @@ const mid1 = function (req, res, next) {
 
 const mid2 = function (req, res, next) {
   req.name = "Pratiksha";
-  console.log("Hi, i am from mid2 ");
+ console.log("Hi, i am from mid2 ");
   //  res.send("Hi, I am mid2 and ending this process");
   next();
 };
