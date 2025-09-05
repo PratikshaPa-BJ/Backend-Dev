@@ -1,4 +1,5 @@
-Your user document should look like this :
+Your user document should look like this :-
+
 {
 \_id: ObjectId("61951bfa4d9fe0d34da86829"),
 name: "Sabiha Khan",
@@ -11,7 +12,8 @@ isFreeAppUser: false // Default false value.
 
 ---
 
-Your product document should look like this:
+Your product document should look like this:-
+
 {
 \_id: ObjectId("61951bfa4d9fe0d34da86344"),
 name:"Catcher in the Rye",
@@ -21,7 +23,8 @@ price:70 //mandatory property
 
 ---
 
-Your Order document looks like this:
+Your Order document looks like this:-
+
 {
 \_id: ObjectId("61951bfa4d9fe0d34da86344"),
 userId: “61951bfa4d9fe0d34da86829”,
@@ -53,8 +56,9 @@ Hints for problem 3:
 2. Validate the userId. Send error if userId is invalid..
 3. Validate the productId. Send the error if productId is invalid..
 4. Now write the logic for order creation. 3 scenarios:-
-   i..Scenario 1, For paid user app and the user has sufficient balance. We deduct the balance from user's balance and update the user. We create an order document
 
-   ii..Scenaio 2, For paid app user and the user has insufficient balance. We send an error that the user doesn't have enough balance
+   i) Scenario 1, For paid user app and the user has sufficient balance. We deduct the balance from user's balance and update the user. We create an order document..
 
-   iii..Scenario 3, For free app user, we dont check user's balance and create the order with 0 amount.
+   ii) Scenaio 2, For paid app user and the user has insufficient balance. We send an error that the user doesn't have enough balance..
+
+   iii) Scenario 3, For free app user, we dont check user's balance and create the order with 0 amount..
