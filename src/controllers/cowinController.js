@@ -12,7 +12,7 @@ const getStates = async function (req, res) {
     res.status(200).send({ msg: getData });
   } catch (error) {
     console.log(error);
-    res.send({ msg: error.message });
+    res.status(500).send({ msg: error.message });
   }
 };
 
@@ -26,7 +26,7 @@ const getDistricts = async function (req, res) {
     var result = await axios(getDataFromAPI);
     res.status(200).send({ msg: result.data });
   } catch (error) {
-    res.send(error.message);
+    res.status(500).send(error.message);
   }
 };
 const getByPin = async function (req, res) {
