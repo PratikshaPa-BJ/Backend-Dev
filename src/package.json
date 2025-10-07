@@ -1,28 +1,29 @@
 {
-  "name": "backend-dev",
+  "name": "lithium",
   "version": "1.0.0",
-  "description": "backend-dev",
+  "description": "repository for backend cohort - Lithium",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PratikshaPa-BJ/Backend-Dev.git"
+    "url": "git+https://github.com/sabihak89/lithium.git"
   },
-  "author": "Pratiksha",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PratikshaPa-BJ/Backend-Dev/issues"
+    "url": "https://github.com/sabihak89/lithium/issues"
   },
-  "homepage": "https://github.com/PratikshaPa-BJ/Backend-Dev#readme",
+  "homepage": "https://github.com/sabihak89/lithium#readme",
   "dependencies": {
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
     "moment": "^2.30.1",
     "mongoose": "^8.16.1",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "redis": "^3.1.2"
   }
 }

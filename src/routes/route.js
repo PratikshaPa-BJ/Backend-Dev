@@ -1,18 +1,17 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const authorController = require("../controllers/authorController");
-const blogController = require("../controllers/blogController")
-const commonMW = require("../middleware/auth");
 
-router.post("/authors", authorController.createAuthor);
-router.post('/login', authorController.createLogin)
-router.post("/blogs", commonMW.tokenValidation , blogController.createBlogs );
-router.get('/blogs', commonMW.tokenValidation, blogController.getBlogData);
-router.put('/blogs/:blogId', commonMW.tokenValidation,  blogController.updateBlogData);
-router.delete('/blogs/:blogId', commonMW.tokenValidation, blogController.deleteBlogById);
-router.delete('/blogs', commonMW.tokenValidation, blogController.deleteBlogByQueryParams );
-router.delete('/deleteBlogs', commonMW.tokenValidation, blogController.deleteBlogByQueryParamsAlternative );
+const authorController = require('../controllers/authorController')
+const bookController = require('../controllers/bookController')
+const publisherController = require('../controllers/publisherController')
 
+router.post('/authors', authorController.createAuthor)
+router.get('/authors/:authorId', authorController.fetchAuthorProfile)
+
+router.post('/books', bookController.createBook)
+router.get('/books', bookController.getBooks)
+
+router.post('/publishers', publisherController.createPublisher)
 
 
 module.exports = router;
