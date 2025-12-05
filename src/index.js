@@ -1,21 +1,18 @@
+require("dotenv").config();
 const express = require("express");
 var bodyParser = require("body-parser");
 
 const route = require("./routes/route.js");
 const { default: mongoose } = require("mongoose");
-
+ const multer = require("multer");
 const app = express();
 
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
+ app.use(multer().any())
 
-mongoose.connect(
-    "mongodb+srv://papratiksha18:4fygxo35mYtTLXGj@cluster0.d1o64oj.mongodb.net/Pratiksha18-DB",
-    {
-      //  useNewUrlParser: true
-    }
-  )
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDb is connected"))
   .catch((err) => console.log(err));
 
