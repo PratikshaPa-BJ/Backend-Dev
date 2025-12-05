@@ -5,11 +5,11 @@ const { promisify } = require("util");
 
 //1. Connect to the redis server
 const redisClient = redis.createClient(
-  18512,
-  "redis-18512.c301.ap-south-1-1.ec2.redns.redis-cloud.com",
+  process.env.REDIS_PORT,
+  process.env.REDIS_HOST,
   { no_ready_check: true }
 );
-redisClient.auth("rqHrZGH1rCadGivzinWBJRMJsId33KWM", function (err) {
+redisClient.auth(process.env.REDIS_PASSWORD, function (err) {
   if (err) throw err;
 });
 
