@@ -6,7 +6,7 @@ const aws = require("aws-sdk");
 // you can never use await on callback..if you awaited something , then you can be sure it is within a promise..
 
 aws.config.update({
-  accessKeyId: process.env.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.AWS_Access_Key_Id,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: "ap-south-1",
 });
